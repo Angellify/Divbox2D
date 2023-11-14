@@ -1,7 +1,7 @@
 # Divbox2D
  A simple game engine made with OpenGL and C++. The goal of this project was to learn more about how computer graphics work and how games are made and also get more familiar with the C++ language. This is about one month of work. Currently the engine is pretty bare bones with only the basics added. However the plan is to iterate and improve the engine as time goes on. Here are some of the features available:
  
-> **Note**
+> [!NOTE]
 > This project in it's early stages of development and there are a lot of features missing or not yet fully implemented and thus subject to change. 
 
  ### Basic Sprite Renderer
