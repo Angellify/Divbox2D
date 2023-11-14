@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Scene01.h"
 #include "Player.h"
+#include "Observer.h"
 
 void Application::Init()
 {

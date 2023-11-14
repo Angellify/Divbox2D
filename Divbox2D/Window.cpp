@@ -1,5 +1,7 @@
 #include "Utils.h"
 #include "Window.h"
+#include "Subject.h"
+#include "Observer.h"
 
 
 
@@ -50,11 +52,23 @@ namespace Divbox2D {
 	}
 
 
+	
 
 	void Window::Update()
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		Subject* subj = new Subject;
+		Observer* observer1 = new Observer(*subj);
+		Observer* observer2 = new Observer(*subj);
+
+		subj->CreateMessage("Hello World");
+		subj->CreateMessage();
+		observer2->RemoveMeFromTheList();
+		subj->CreateMessage("Oh no");
+
+
 		while (!glfwWindowShouldClose(window))
 		{
 			glClearColor(0.2f, 0.5f, 0.5f, 1.0f);

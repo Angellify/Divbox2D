@@ -89,34 +89,34 @@ void Player::Move()
 {
 	y = 9;
 	double deltaTime = Divbox2D::Timetrack::Get()->deltaTime;
-	if (Divbox2D::Input::Get()->Update() == 'W')
-	{
+	//if (Divbox2D::Input::Get()->Update() == 'W')
+	//{
 
-		y = 7;
-		playerQuad.posY += 1.0f * deltaTime;
+	//	y = 7;
+	//	playerQuad.posY += 1.0f * deltaTime;
 
-	}
+	//}
 
-	if (Divbox2D::Input::Get()->Update() == 'S')
-	{
-		playerQuad.posY -= 1.0f * deltaTime;
+	//if (Divbox2D::Input::Get()->Update() == 'S')
+	//{
+	//	playerQuad.posY -= 1.0f * deltaTime;
 
-		y = 7;
-	}
+	//	y = 7;
+	//}
 
-	if (Divbox2D::Input::Get()->Update() == 'D')
-	{
-		playerQuad.posX += 1.0f * deltaTime;
+	//if (Divbox2D::Input::Get()->Update() == 'D')
+	//{
+	//	playerQuad.posX += 1.0f * deltaTime;
 
-		y = 7;
-	}
+	//	y = 7;
+	//}
 
-	if (Divbox2D::Input::Get()->Update() == 'A')
-	{
-		playerQuad.posX -= 1.0f * deltaTime;
+	//if (Divbox2D::Input::Get()->Update() == 'A')
+	//{
+	//	playerQuad.posX -= 1.0f * deltaTime;
 
-		y = 7;
-	}
+	//	y = 7;
+	//}
 
 }
 
