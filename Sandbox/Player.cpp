@@ -1,5 +1,6 @@
 #include "Player.h"
-
+#include <iostream>
+#include "Bus.h"
 // Animation speed controls
 double animationSpeed = 15.0f;
 double animationUpdateTime = 1.0f / animationSpeed;
@@ -27,6 +28,7 @@ float vertices[] = {
 
 void Player::Load()
 {
+	Bus::GetBus()->Subscribe(this);
 	playerQuad.CreateQuad();
 
 	playerQuad.posX = 0.0f;
@@ -89,38 +91,42 @@ void Player::Move()
 {
 	y = 9;
 	double deltaTime = Divbox2D::Timetrack::Get()->deltaTime;
-	//if (Divbox2D::Input::Get()->Update() == 'W')
-	//{
 
-	//	y = 7;
-	//	playerQuad.posY += 1.0f * deltaTime;
+	if (eventKey == 'W')
+	{
+		y = 7;
+		playerQuad.posY += 1.0f * deltaTime;
+	}
+	if (eventKey == 'S')
+	{
+		playerQuad.posY -= 1.0f * deltaTime;
 
-	//}
+		y = 7;
+	}
 
-	//if (Divbox2D::Input::Get()->Update() == 'S')
-	//{
-	//	playerQuad.posY -= 1.0f * deltaTime;
+	if (eventKey == 'D')
+	{
+		playerQuad.posX += 1.0f * deltaTime;
 
-	//	y = 7;
-	//}
+		y = 7;
+	}
 
-	//if (Divbox2D::Input::Get()->Update() == 'D')
-	//{
-	//	playerQuad.posX += 1.0f * deltaTime;
+	if (eventKey == 'A')
+	{
+		playerQuad.posX -= 1.0f * deltaTime;
 
-	//	y = 7;
-	//}
-
-	//if (Divbox2D::Input::Get()->Update() == 'A')
-	//{
-	//	playerQuad.posX -= 1.0f * deltaTime;
-
-	//	y = 7;
-	//}
+		y = 7;
+	}
 
 }
 
 Divbox2D::Quad Player::GetQuad()
 {
 	return playerQuad;
+}
+
+void Player::Update(int message)
+{
+	std::cout << "Player pressed: " << message << '\n';
+	eventKey = message;
 }

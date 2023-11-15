@@ -1,7 +1,6 @@
 #include "Utils.h"
 #include "Window.h"
-#include "Subject.h"
-#include "Observer.h"
+#include "Bus.h"
 
 
 
@@ -59,20 +58,25 @@ namespace Divbox2D {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		Subject* subj = new Subject;
-		Observer* observer1 = new Observer(*subj);
-		Observer* observer2 = new Observer(*subj);
-
-		subj->CreateMessage("Hello World");
-		subj->CreateMessage();
-		observer2->RemoveMeFromTheList();
-		subj->CreateMessage("Oh no");
-
 
 		while (!glfwWindowShouldClose(window))
 		{
 			glClearColor(0.2f, 0.5f, 0.5f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+				Bus::GetBus()->UpdateListener((int)'W');
+			else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+				Bus::GetBus()->UpdateListener((int)'A');
+			else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+				Bus::GetBus()->UpdateListener((int)'S');
+			else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+				Bus::GetBus()->UpdateListener((int)'D');
+			else
+				Bus::GetBus()->UpdateListener(0);
+			
+
+	
 
 			Timetrack::Get()->UpdateTime();
 			Renderer::DrawQuad();
