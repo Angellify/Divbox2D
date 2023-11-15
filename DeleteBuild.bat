@@ -31,7 +31,6 @@ del "Divbox2D.sln"
 del "Divbox2D.vcxproj"
 del "Divbox2D.vcxproj.filters"
 del "Divbox2D.vcxproj.user"
-rmdir ".vs"
-
+rmdir /s /q "C:\Projects\Divbox2D\.vs"
 
 
