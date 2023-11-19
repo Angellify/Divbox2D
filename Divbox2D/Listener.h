@@ -1,9 +1,14 @@
 #pragma once
-#include <string>
+#include "Bus.h"
+#include <iostream>
 
-class Listener {
+namespace Divbox2D {
 
-private:
-public:
-	virtual void Update(int message) = 0;
-};
+	class Listener {
+	private:
+		int _id;
+	public:
+		virtual void Update(int message) = 0;
+	};
+
+}

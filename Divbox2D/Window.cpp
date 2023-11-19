@@ -1,7 +1,7 @@
 #include "Utils.h"
 #include "Window.h"
 #include "Bus.h"
-
+#include "Input.h"
 
 
 namespace Divbox2D {
@@ -57,33 +57,21 @@ namespace Divbox2D {
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+		Input input;
 
 		while (!glfwWindowShouldClose(window))
 		{
 			glClearColor(0.2f, 0.5f, 0.5f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-				Bus::GetBus()->UpdateListener((int)'W');
-			else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-				Bus::GetBus()->UpdateListener((int)'A');
-			else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-				Bus::GetBus()->UpdateListener((int)'S');
-			else if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-				Bus::GetBus()->UpdateListener((int)'D');
-			else
-				Bus::GetBus()->UpdateListener(0);
-			
-
-	
-
 			Timetrack::Get()->UpdateTime();
-			Renderer::DrawQuad();
+			Bus::GetInstance().UpdateListener(input.Update());
 
 			if (!scenes.empty())
 				for (auto scene : scenes)
 					scene->Update();
+
+			Renderer::DrawQuad();
 
 			glfwSwapBuffers(window);
 			glfwPollEvents();
