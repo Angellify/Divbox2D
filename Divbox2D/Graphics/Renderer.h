@@ -14,8 +14,6 @@ namespace Divbox2D {
 		static void Shutdown();
 
 		static void DrawQuad();
-		static void AddQuad(glm::vec2 position);
-		static void AddQuad(glm::vec2 position, glm::vec2 size);
 		static void AddQuad(Quad quad);
 
 	};

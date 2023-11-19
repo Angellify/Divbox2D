@@ -9,22 +9,20 @@ namespace Divbox2D {
 
 	class Quad {
 	private:
+		Sprite sprite;
+		glm::vec2 size;
+		glm::vec2 position;
+		glm::mat4 transform = glm::mat4(1.0f);
+
 		VertexArray vertexArray;
 		VertexBuffer vertexBuffer;
 	public:
-		double posX;
-		double posY;
-		float height;
-		float width;
 
 		VertexArray GetVertexArray();
 		VertexBuffer GetVertexBuffer();
-
-		Sprite sprite;
-		glm::mat4 transform = glm::mat4(1.0f);
-
+		Quad();
+		Quad(glm::vec2 _position, glm::vec2 _size, Sprite _sprite);
 		void Draw();
-		void CreateQuad();
 
 	};
 }

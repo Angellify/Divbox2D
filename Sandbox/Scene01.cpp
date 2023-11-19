@@ -9,12 +9,13 @@ void Scene01::Init()
     Divbox2D::Renderer::shader.UploadUniformMat("world", mainCamera.GetViewMatrix());
     Divbox2D::Renderer::shader.UploadUniformMat("projection", mainCamera.GetProjectionMatrix());
     
-    // Map
-    for (int x = -4; x < 4; x++)
-        for (int y = -4; y < 4; y++)
-            Divbox2D::Renderer::AddQuad({ x, y }, { 48.0f, 48.0f });
-    
     player.Load();  
+
+    Divbox2D::Sprite mapTile; 
+    mapTile.LoadSprite("C:/Projects/Divbox2D/resources/Tilemap.png", GL_RGBA);
+
+    Divbox2D::Quad grassQuad = Divbox2D::Quad({ 2.0f, 0.0f }, { 48.0f, 48.0f }, mapTile);
+    Divbox2D::Renderer::AddQuad(grassQuad);
 
 }
 

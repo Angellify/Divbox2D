@@ -25,14 +25,13 @@ namespace Divbox2D {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		// load image, create texture and generate mipmaps
-		int width, height, nrChannels;
+		int nrChannels;
 
 		stbi_set_flip_vertically_on_load(1);
-		unsigned char* data = stbi_load(filepath, &width, &height, &nrChannels, 4);
+		unsigned char* data = stbi_load(filepath, &spriteWidth, &spriteHeight, &nrChannels, 4);
 		if (data)
 		{
-
-			glTexImage2D(GL_TEXTURE_2D, 0, type, width, height, 0, type, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, type, spriteWidth, spriteHeight, 0, type, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 
 		}

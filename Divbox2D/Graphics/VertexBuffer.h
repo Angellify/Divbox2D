@@ -10,6 +10,7 @@ namespace Divbox2D {
 		VertexBuffer();
 
 		void Create();
+
 		void Delete();
 
 		void Bind();
