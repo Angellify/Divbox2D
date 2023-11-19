@@ -1,19 +1,28 @@
 #include "Utils.h"
 #include "Bus.h"
+#include "Listener.h"
 
-void Bus::Subscribe(Listener* listener)
-{
-	listeners.push_back(listener);
-}
+namespace Divbox2D {
 
-void Bus::UpdateListener(int message)
-{
-	for (auto listener : listeners)
-		listener->Update(message);
-}
+	void Bus::Subscribe(Listener* listener)
+	{
+		listeners.push_back(listener);
+	}
 
-Bus* Bus::GetBus()
-{
-	static Bus bus;
-	return &bus;
+	void Bus::Unsubscribe(Listener* listener)
+	{
+		listeners.erase(std::remove(listeners.begin(), listeners.end(), listener), listeners.end());
+	}
+
+	void Bus::UpdateListener(int message)
+	{
+		for (auto listener : listeners)
+			listener->Update(message);
+	}
+
+	Bus& Bus::GetInstance()
+	{
+		static Bus instance;
+		return instance;
+	}
 }
