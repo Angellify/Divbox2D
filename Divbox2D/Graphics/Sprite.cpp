@@ -1,5 +1,6 @@
 #include "Utils.h"
 #include "Sprite.h"
+#include "Timetrack.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
@@ -9,13 +10,13 @@ namespace Divbox2D {
 
 	Sprite::Sprite()
 	{
-		spriteID = 0;
 		spriteWidth = 0;
 		spriteHeight = 0;
 	}
 
 	void Sprite::LoadSprite(const char* filepath, unsigned int type)
 	{
+
 		glGenTextures(1, &spriteID);
 		glBindTexture(GL_TEXTURE_2D, spriteID); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
 		// set the texture wrapping parameters
@@ -42,6 +43,46 @@ namespace Divbox2D {
 				std::cout << stbi_failure_reason() << '\n';
 		}
 		stbi_image_free(data);
+	}
+
+
+
+	void Sprite::Play()
+	{
+
+
+		float vertices[] = {
+
+			// positions          // colors           // texture coords
+			-0.5f,  0.5f, 1.0f, 1.0f, 0.0f,   (x * tileWidth) / spriteWidth, ((y + 1) * tileHeight) / spriteHeight,   // top left 
+			 0.5f,  0.5f, 1.0f, 0.0f, 0.0f,   ((x + 1) * tileWidth) / spriteWidth, ((y + 1) * tileHeight) / spriteHeight,  // top right
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,   ((x + 1) * tileWidth) / spriteWidth, (y * tileHeight) / spriteHeight,  // bottom right
+			-0.5f, -0.5f, 0.0f, 0.0f, 1.0f,   (x * tileWidth) / spriteWidth, (y * tileHeight) / spriteHeight,  // bottom left
+		};
+
+		double deltaTime = Timetrack::Get()->deltaTime;
+		timeSinceLastFrameSwap += deltaTime;
+
+		if (timeSinceLastFrameSwap > animationUpdateTime) {
+			x++;
+			timeSinceLastFrameSwap = 0.0f;
+		}
+		if (x > 10)
+			x = 0;
+
+		parentVertexID.Bind();
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+		parentVertexID.Unbind();
+
+
+
+	}
+
+	Sprite::~Sprite()
+	{
+		glDeleteTextures(1, &spriteID);
+		std::cout << "Destroying sprite " << spriteID;
+
 	}
 
 
