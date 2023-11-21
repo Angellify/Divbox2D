@@ -7,22 +7,35 @@
 
 namespace Divbox2D {
 
+	struct Animation
+	{
+		int frames;
+		int x, y;
+
+	};
+
 	class Quad {
+
 	private:
-		Sprite sprite;
 		glm::vec2 size;
-		glm::vec2 position;
-		glm::mat4 transform = glm::mat4(1.0f);
 
 		VertexArray vertexArray;
 		VertexBuffer vertexBuffer;
+
+
+
+		Animation idleAnim;
 	public:
+		Sprite sprite;
+		glm::vec2 position;
+		glm::mat4 transform = glm::mat4(1.0f);
 
 		VertexArray GetVertexArray();
 		VertexBuffer GetVertexBuffer();
 		Quad();
-		Quad(glm::vec2 _position, glm::vec2 _size, Sprite _sprite);
+		Quad(glm::vec2 _position, glm::vec2 _size);
+		~Quad();
 		void Draw();
-
+		void Modify();
 	};
 }

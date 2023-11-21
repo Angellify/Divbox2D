@@ -2,7 +2,12 @@
 
 namespace Divbox2D {
 
+
+
+
 	class VertexBuffer {
+
+
 	private:
 		unsigned __int32 vertexBufferID;
 		unsigned __int32 indexBufferID;

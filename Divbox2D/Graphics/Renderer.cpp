@@ -8,6 +8,8 @@ namespace Divbox2D {
 	Sprite grassSprite;
 	Shader Renderer::shader;
 	std::vector<Quad> Renderer::Quads;
+	std::vector<Quad*> Renderer::pQuads;
+
 
 	void Renderer::Shutdown()
 	{
@@ -27,15 +29,16 @@ namespace Divbox2D {
 	{
 		Renderer::Quads.emplace_back(quad);
 	}
+	void Renderer::AddQuad(Quad* quad)
+	{
+		Renderer::pQuads.emplace_back(quad);
+	}
 
 	void Renderer::DrawQuad()
 	{
-
-		if (!Renderer::Quads.empty())
-			for (Quad quad : Renderer::Quads)
-			{
-				quad.Draw();
-			}
+		if (!Renderer::pQuads.empty())
+			for (Quad* quad : Renderer::pQuads)
+				quad->Draw();
 	}
 
 }
