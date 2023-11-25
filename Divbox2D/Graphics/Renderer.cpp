@@ -2,43 +2,50 @@
 #include "Renderer.h"
 
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
+
 
 namespace Divbox2D {
 
-	Sprite grassSprite;
 	Shader Renderer::shader;
-	std::vector<Quad> Renderer::Quads;
-	std::vector<Quad*> Renderer::pQuads;
 
+	struct RenderData {
+		VertexArray* vertexArray = new VertexArray;
+
+	};
+	
+	static RenderData renderData;
 
 	void Renderer::Shutdown()
 	{
-		for (auto i : Quads)
-		{
-			i.GetVertexBuffer().Delete();
-			i.GetVertexArray().Delete();
-		}
+		delete(renderData.vertexArray);
 	}
 
 	void Renderer::Init()
 	{
 		Renderer::shader.CreateShader();
+		renderData.vertexArray->Create();
+		renderData.vertexArray->Bind();
+		
+		VertexBuffer* vertexBuffer = new VertexBuffer;
+		vertexBuffer->Create();
+
+		renderData.vertexArray->PushAttribute(0, 2, sizeof(float) * 0);
+		renderData.vertexArray->PushAttribute(1, 3, sizeof(float) * 2);
+		renderData.vertexArray->PushAttribute(2, 2, sizeof(float) * 5);
+		
+		vertexBuffer->Unbind();
+		delete(vertexBuffer);
 	}
 
-	void Renderer::AddQuad(Quad quad)
+	void Renderer::DrawQuad(glm::vec2 _position, glm::vec2 _size)
 	{
-		Renderer::Quads.emplace_back(quad);
-	}
-	void Renderer::AddQuad(Quad* quad)
-	{
-		Renderer::pQuads.emplace_back(quad);
-	}
-
-	void Renderer::DrawQuad()
-	{
-		if (!Renderer::pQuads.empty())
-			for (Quad* quad : Renderer::pQuads)
-				quad->Draw();
+		glUseProgram(Renderer::shader.programID);
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(_size.x, _size.y, 0.0f));
+		glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(_position.x, _position.y, 0.0f));
+		glm::mat4 transform = scale * model;
+		Renderer::shader.UploadUniformMat("model", transform);
+		renderData.vertexArray->Draw();
 	}
 
 }

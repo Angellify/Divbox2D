@@ -71,14 +71,9 @@ namespace Divbox2D {
 				for (auto scene : scenes)
 					scene->Update();
 
-			Renderer::DrawQuad();
-
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
-
-		for (Quad* quad : Renderer::pQuads)
-			delete quad;
 
 		Renderer::Shutdown();
 		glfwTerminate();

@@ -7,14 +7,18 @@ class Player : public Divbox2D::Listener
 {
 private:
 	int eventKey;
+
+	glm::vec2 size;
+	glm::vec2 position;
 	glm::mat4 transform;
-	Divbox2D::Quad* playerQuad;
+
 public:
 	Player() { Divbox2D::Bus::GetInstance().Subscribe(this); }
+
 	void Load();
 	void Move();
+	void Draw();
 
-	// Inherited via Listener
 	void Update(int message) override;
 };
 

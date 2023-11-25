@@ -12,7 +12,7 @@ namespace Divbox2D {
 		void Create();
 		void Delete();
 		void PushAttribute(int index, int size, int stride);
-
+		void Draw();
 		unsigned __int32 GetVertexArrayID();
 
 	};

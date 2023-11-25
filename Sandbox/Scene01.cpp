@@ -3,21 +3,22 @@
 
 void Scene01::Init()
 {
-    Divbox2D::Camera mainCamera;
+	Divbox2D::Camera mainCamera;
 
-    Divbox2D::Renderer::Init();
-    Divbox2D::Renderer::shader.UploadUniformMat("world", mainCamera.GetViewMatrix());
-    Divbox2D::Renderer::shader.UploadUniformMat("projection", mainCamera.GetProjectionMatrix());
+	Divbox2D::Renderer::Init();
+	Divbox2D::Renderer::shader.UploadUniformMat("world", mainCamera.GetViewMatrix());
+	Divbox2D::Renderer::shader.UploadUniformMat("projection", mainCamera.GetProjectionMatrix());
 
-    
-    Divbox2D::Quad* test = new Divbox2D::Quad({ 0.0f, 0.0f }, { 48.0f, 48.0f });
-    Divbox2D::Renderer::AddQuad(test);
-
-    player.Load();
+	player.Load();
 
 
 }
 
-void Scene01::Update() {
-    player.Move();
+void Scene01::Update()
+{
+	Divbox2D::Renderer::DrawQuad({ 2.0f, 0.0f }, { 100.f, 100.f });
+	player.Move();
+	player.Draw();
+
+
 }

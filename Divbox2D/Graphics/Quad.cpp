@@ -31,12 +31,12 @@ namespace Divbox2D {
 		size = _size;
 		position = _position;
 		sprite.LoadSprite("C:/Projects/Divbox2D/resources/orc.png", GL_RGBA);
-		std::cout << "Created with sprite ID: " << sprite.spriteID << '\n';
+		std::cout << "Created Quad with ID:" << vertexBuffer.GetVertexBufferID() << " and with sprite ID : " << sprite.spriteID << '\n';
 	}
 
 	Quad::~Quad()
 	{
-		std::cout << "Destroying Quad " << '\n';
+		std::cout << "Quad out of scope, Destroying" << '\n';
 	}
 
 

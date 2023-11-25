@@ -81,8 +81,6 @@ namespace Divbox2D {
 	Sprite::~Sprite()
 	{
 		glDeleteTextures(1, &spriteID);
-		std::cout << "Destroying sprite " << spriteID;
-
 	}
 
 

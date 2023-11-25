@@ -28,7 +28,12 @@ namespace Divbox2D {
 		glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (const void*)stride);
 		glEnableVertexAttribArray(index);
 	}
-
+	void VertexArray::Draw()
+	{
+		Bind();
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		Unbind();
+	}
 	unsigned __int32 VertexArray::GetVertexArrayID()
 	{
 		return vertexArrayID;
