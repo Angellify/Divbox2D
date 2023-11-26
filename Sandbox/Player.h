@@ -8,13 +8,15 @@ class Player : public Divbox2D::Listener
 private:
 	int eventKey;
 
-	glm::vec2 size;
-	glm::vec2 position;
-	glm::mat4 transform;
+
+	Divbox2D::Sprite* playerSprite;
 
 public:
-	Player() { Divbox2D::Bus::GetInstance().Subscribe(this); }
+	glm::vec2 size;
+	glm::vec3 position;
 
+	Player() { Divbox2D::Bus::GetInstance().Subscribe(this); }
+	~Player();
 	void Load();
 	void Move();
 	void Draw();

@@ -15,6 +15,7 @@ namespace Divbox2D {
 
 	void VertexArray::Create()
 	{
+		std::cout << "Creating Array" << '\n';
 		glGenVertexArrays(1, &vertexArrayID);
 	}
 

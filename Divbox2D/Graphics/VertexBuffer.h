@@ -14,6 +14,7 @@ namespace Divbox2D {
 	public:
 		VertexBuffer();
 
+
 		void Create();
 
 		void Delete();

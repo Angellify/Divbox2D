@@ -33,7 +33,6 @@ namespace Divbox2D {
 		"uniform sampler2D texture1;\n"
 		"void main()\n"
 		"{\n"
-		//"   FragColor = vec4(color, 1.0);\n"
 		"   FragColor = texture(texture1, TexCoord);\n"
 		"}\n\0";
 

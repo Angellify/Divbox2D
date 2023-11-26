@@ -49,8 +49,6 @@ namespace Divbox2D {
 
 	void Sprite::Play()
 	{
-
-
 		float vertices[] = {
 
 			// positions          // colors           // texture coords
@@ -69,12 +67,6 @@ namespace Divbox2D {
 		}
 		if (x > 10)
 			x = 0;
-
-		parentVertexID.Bind();
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-		parentVertexID.Unbind();
-
-
 
 	}
 

@@ -56,13 +56,15 @@ namespace Divbox2D {
 	void Window::Update()
 	{
 		glEnable(GL_BLEND);
+		glEnable(GL_DEPTH_TEST);
+
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		Input input;
 
 		while (!glfwWindowShouldClose(window))
 		{
 			glClearColor(0.2f, 0.5f, 0.5f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			Timetrack::Get()->UpdateTime();
 			Bus::GetInstance().UpdateListener(input.Update());
@@ -74,8 +76,9 @@ namespace Divbox2D {
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}
-
-		Renderer::Shutdown();
+		if (!scenes.empty())
+			for (auto scene : scenes)
+				scene->Clean();
 		glfwTerminate();
 	}
 

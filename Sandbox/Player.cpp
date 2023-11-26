@@ -1,28 +1,24 @@
 #include "Player.h"
 #include <iostream>
 
+Player::~Player()
+{
+	delete(playerSprite);
+}
+
 void Player::Load()
 {
-	position = { 0.0f, 0.0f };
+	position = { -4.0f, 0.0f, 1.0f };
 	size = { 128.0f, 128.0f };
+	
 
-
-
+	playerSprite = new Divbox2D::Sprite();
+	playerSprite->LoadSprite("C:/Projects/Divbox2D/resources/Player.png", GL_RGBA);
 }
 
 
 
-//bool CheckCollision(Divbox2D::Quad one, Divbox2D::Quad two) // AABB - AABB collision, not used anywhere right now
-//{
-//	bool collisionX = one.posX + one.width >= two.posX &&
-//		two.posX + two.width >= one.posX;
-//
-//	bool collisionY = one.posY + one.height >= two.posY &&
-//		two.posY + two.height >= one.posY;
-//
-//	return collisionX && collisionY;
-//
-//}
+
 
 void Player::Move()
 {
@@ -41,7 +37,7 @@ void Player::Move()
 
 void Player::Draw()
 {
-	Divbox2D::Renderer::DrawQuad(position, { size.x, size.y });
+	Divbox2D::Renderer::DrawQuad(position, size, playerSprite);
 }
 
 void Player::Update(int message)

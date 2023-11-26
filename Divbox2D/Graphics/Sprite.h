@@ -3,8 +3,8 @@
 namespace Divbox2D {
 
 	class Sprite {
-		VertexArray parentVertexID;
 	public:
+		VertexArray parentVertexID;
 		unsigned int spriteID;
 		int x = 0;
 		int y = 9;

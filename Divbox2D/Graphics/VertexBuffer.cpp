@@ -6,9 +6,9 @@
 namespace Divbox2D {
 
 	int x = 0;
-	int y = 9;
-	int spriteWidth = 320;
-	int spriteHeight = 320;
+	int y = 0;
+	int spriteWidth = 32;
+	int spriteHeight = 32;
 	float tileWidth = 32.0f;
 	float tileHeight = 32.0f;
 
@@ -38,6 +38,8 @@ namespace Divbox2D {
 
 	void VertexBuffer::Create()
 	{
+		std::cout << "Creating Buffer" << '\n';
+
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -75,5 +77,6 @@ namespace Divbox2D {
 	{
 		return indexBufferID;
 	}
+
 
 }
